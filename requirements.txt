@@ -1,0 +1,7 @@
+python-dotenv==1.0.0
+livekit-agents==1.2.6
+livekit-plugins-deepgram==1.2.6
+livekit-plugins-silero==1.2.6
+livekit-plugins-google==1.2.6
+livekit-plugins-turn-detector==1.2.6
+google-generativeai==0.8.3
