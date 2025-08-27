@@ -24,6 +24,9 @@ COPY requirements.txt* ./
 # Install dependencies and rebuild native binaries for Linux
 RUN npm install --force && npm rebuild
 
+# Increase Node.js heap size
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # Install Python dependencies if requirements.txt exists
 RUN if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
@@ -41,8 +44,7 @@ RUN pip install \
 # Copy application code
 COPY . .
 
-# Download required model files for LiveKit plugins
-RUN python3 room_agent_connector.py download-files
+# Skip model download to fix timeout issues - models will be downloaded on first run
 
 # Make start.sh executable
 RUN chmod +x /app/start.sh
