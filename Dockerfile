@@ -45,14 +45,7 @@ RUN pip install \
 COPY . .
 
 # Download required models for LiveKit turn detector
-RUN python3 -c "
-from livekit.plugins.turn_detector.multilingual import MultilingualModel
-try:
-    model = MultilingualModel()
-    print('Turn detector model downloaded successfully')
-except Exception as e:
-    print(f'Model download failed: {e}')
-"
+RUN python3 -c "from livekit.plugins.turn_detector.multilingual import MultilingualModel; model = MultilingualModel(); print('Turn detector model downloaded successfully')"
 
 # Make start.sh executable
 RUN chmod +x /app/start.sh
