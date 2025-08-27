@@ -44,8 +44,8 @@ RUN pip install \
 # Copy application code
 COPY . .
 
-# Download required models for LiveKit turn detector
-RUN python3 -c "from livekit.plugins.turn_detector.multilingual import MultilingualModel; model = MultilingualModel(); print('Turn detector model downloaded successfully')"
+# Download required models for LiveKit turn detector using CLI
+RUN python3 room_agent_connector.py download-files || echo "Model download will happen on first run"
 
 # Make start.sh executable
 RUN chmod +x /app/start.sh
